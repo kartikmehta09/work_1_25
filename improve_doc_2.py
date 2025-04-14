@@ -1,6 +1,5 @@
-"""
-Document Format Converter using Anthropic Claude on Amazon Bedrock
 
+<<<<<<< HEAD
 This script converts a large DOCX document to a new template format while
 preserving structural elements using Claude via Amazon Bedrock.
 """
@@ -414,3 +413,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+=======
+>>>>>>> b3d7fad56d66edd03b3b6906a427b424876d88a6
