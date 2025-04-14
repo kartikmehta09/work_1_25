@@ -55,6 +55,36 @@ def extract_document_structure(doc_path):
     print(f"Extracted {len(structure)} paragraphs from {doc_path}")
     return structure
 
+import json
+
+## template reading json file 
+def analyze_template_structure(json_template_path):
+    """Analyze JSON template to extract formatting rules for different elements."""
+    print("Analyzing JSON template structure")
+    formatting_rules = {
+        "header": None,
+        "subheader": None,
+        "paragraph": None
+    }
+
+    # Load JSON template
+    with open(json_template_path, 'r') as f:
+        template_data = json.load(f)
+
+    # Extract formatting rules from JSON structure
+    for item in template_data:
+        element_type = item.get("type")
+        if element_type in formatting_rules and formatting_rules[element_type] is None:
+            formatting_rules[element_type] = item.get("formatting", {}).get("style_name")
+
+    # Set defaults for any missing elements
+    formatting_rules.setdefault("header", "Heading 1")
+    formatting_rules.setdefault("subheader", "Heading 2") 
+    formatting_rules.setdefault("paragraph", "Normal")
+
+    return formatting_rules
+
+## template reading docx file 
 def analyze_template_structure(template_structure):
     """Analyze the template to extract formatting rules for different elements."""
     print("Analyzing template structure")
